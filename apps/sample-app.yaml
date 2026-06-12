@@ -11,7 +11,7 @@ spec:
 
   source:
     # 👇 REPLACE with your repo URL after you push.
-    repoURL: https://github.com/<your-username>/argocd-helm-poc.git
+    repoURL: https://github.com/Rickyf115/argocd-sample-application.git
     targetRevision: main
     path: charts/sample-app
     helm:
@@ -26,7 +26,7 @@ spec:
 
   syncPolicy:
     automated:
-      prune: true       # delete resources removed from Git
-      selfHeal: true    # revert manual drift back to Git state
+      prune: true # delete resources removed from Git
+      selfHeal: true # revert manual drift back to Git state
     syncOptions:
       - CreateNamespace=true
