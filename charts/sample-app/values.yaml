@@ -22,7 +22,7 @@ resources:
 
 # The text rendered on the landing page, served from a ConfigMap.
 # Edit this value and push to see GitOps in action.
-message: "We have synced"
+message: "I have changed code"
 
 # Toggle to demonstrate self-healing: set to a bad value and watch Argo correct drift.
 extraLabel: "poc"
