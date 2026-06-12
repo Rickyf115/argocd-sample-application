@@ -1,0 +1,30 @@
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: {{ include "sample-app.fullname" . }}-html
+  labels:
+    {{- include "sample-app.labels" . | nindent 4 }}
+data:
+  index.html: |
+    <!DOCTYPE html>
+    <html lang="en">
+      <head>
+        <meta charset="utf-8" />
+        <title>sample-app</title>
+        <style>
+          body { font-family: system-ui, sans-serif; display: grid; place-items: center;
+                 min-height: 100vh; margin: 0; background: #0d1117; color: #e6edf3; }
+          .card { text-align: center; padding: 2rem 3rem; border: 1px solid #30363d;
+                  border-radius: 12px; background: #161b22; }
+          h1 { margin: 0 0 .5rem; }
+          code { color: #7ee787; }
+        </style>
+      </head>
+      <body>
+        <div class="card">
+          <h1>{{ .Values.message }}</h1>
+          <p>Served by <code>{{ include "sample-app.fullname" . }}</code></p>
+          <p>Replicas: {{ .Values.replicaCount }}</p>
+        </div>
+      </body>
+    </html>

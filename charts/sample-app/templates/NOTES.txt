@@ -1,0 +1,10 @@
+{{ .Chart.Name }} deployed as release "{{ .Release.Name }}".
+
+To view it locally:
+
+  kubectl port-forward svc/{{ include "sample-app.fullname" . }} 8081:{{ .Values.service.port }}
+
+Then open http://localhost:8081
+
+This release is meant to be managed by Argo CD. Edit values.yaml in Git,
+push, and let Argo CD reconcile the change.

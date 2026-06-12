@@ -1,0 +1,28 @@
+# Default values for sample-app.
+# Change any of these, commit, and watch Argo CD sync the diff.
+
+replicaCount: 2
+
+image:
+  repository: nginxinc/nginx-unprivileged
+  tag: "1.27-alpine"
+  pullPolicy: IfNotPresent
+
+service:
+  type: ClusterIP
+  port: 80
+
+resources:
+  requests:
+    cpu: 50m
+    memory: 32Mi
+  limits:
+    cpu: 100m
+    memory: 64Mi
+
+# The text rendered on the landing page, served from a ConfigMap.
+# Edit this value and push to see GitOps in action.
+message: "Hello from Argo CD! Edit me in values.yaml and watch the sync."
+
+# Toggle to demonstrate self-healing: set to a bad value and watch Argo correct drift.
+extraLabel: "poc"

@@ -1,0 +1,32 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: sample-app
+  namespace: argocd
+  # Keeps the app around if you delete it without cascade; remove for full cleanup.
+  finalizers:
+    - resources-finalizer.argocd.argoproj.io
+spec:
+  project: default
+
+  source:
+    # 👇 REPLACE with your repo URL after you push.
+    repoURL: https://github.com/<your-username>/argocd-helm-poc.git
+    targetRevision: main
+    path: charts/sample-app
+    helm:
+      # Optional: override chart values here, or leave it to use values.yaml.
+      valuesObject:
+        replicaCount: 2
+        message: "Managed by Argo CD via GitOps 🎉"
+
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: sample-app
+
+  syncPolicy:
+    automated:
+      prune: true       # delete resources removed from Git
+      selfHeal: true    # revert manual drift back to Git state
+    syncOptions:
+      - CreateNamespace=true
